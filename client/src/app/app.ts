@@ -1,12 +1,14 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+
+import { AssistantPanel } from './features/assistant/assistant-panel';
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.css',
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, AssistantPanel],
   templateUrl: './app.html',
+  styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('client');
+  protected readonly assistantOpen = signal(true);
 }
