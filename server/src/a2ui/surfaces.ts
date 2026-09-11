@@ -96,7 +96,12 @@ export function boardDashboardSurface(tasks: BoardTaskSummary[]): A2uiSurface {
       action: { event: { name: 'openTask', context: { taskId: { path: 'id' } } } },
     },
     text('focus-item-button-label', 'Open'),
-    text('hours', { call: 'formatString', args: { template: 'Total estimate: {hours} h', hours: { path: '/stats/hours' } }, returnType: 'string' } as unknown as { path: string }, 'caption'),
+    // A catalog *function* call: the renderer interpolates `${...}` from the data model.
+    text(
+      'hours',
+      { call: 'formatString', args: { value: 'Total estimate: ${/stats/hours} h' }, returnType: 'string' } as unknown as { path: string },
+      'caption',
+    ),
   ];
 
   return surface(surfaceId, components, {

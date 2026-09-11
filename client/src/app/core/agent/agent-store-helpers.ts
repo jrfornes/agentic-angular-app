@@ -37,6 +37,8 @@ export function stopRun(store: Signal<AgentStore>): void {
 export function resetConversation(store: Signal<AgentStore>): void {
   const agent = store().agent;
   agent.abortRun();
-  agent.messages = [];
+  // `setMessages` notifies subscribers (and thereby the CopilotKit store signal);
+  // assigning `agent.messages` directly would not.
+  agent.setMessages([]);
   agent.threadId = randomUUID();
 }
