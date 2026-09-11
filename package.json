@@ -1,0 +1,21 @@
+{
+  "name": "agentic-angular-app",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Hands-on learning project: Agentic UI with Angular, CopilotKit, AG-UI, A2UI and MCP",
+  "scripts": {
+    "install:all": "npm install && npm --prefix server install && npm --prefix mcp-server install && npm --prefix client install --legacy-peer-deps",
+    "dev": "concurrently -n mcp,agent,web -c magenta,cyan,green \"npm --prefix mcp-server run dev\" \"npm --prefix server run dev\" \"npm --prefix client start\"",
+    "dev:mcp": "npm --prefix mcp-server run dev",
+    "dev:agent": "npm --prefix server run dev",
+    "dev:web": "npm --prefix client start",
+    "typecheck": "npm --prefix server run typecheck && npm --prefix mcp-server run typecheck",
+    "build": "npm --prefix client run build"
+  },
+  "engines": {
+    "node": ">=22.22 || >=24.15"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
