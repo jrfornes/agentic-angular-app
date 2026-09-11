@@ -1,0 +1,25 @@
+<div class="shell" [class.shell--assistant]="assistantOpen()">
+  <header class="topbar">
+    <a routerLink="/board" class="brand">
+      <span class="brand__mark">▣</span>
+      Agentic Board
+    </a>
+    <nav class="nav">
+      <a routerLink="/board" routerLinkActive="active">Board</a>
+      <a routerLink="/about" routerLinkActive="active">About</a>
+    </nav>
+    <button type="button" class="ghost" (click)="assistantOpen.set(!assistantOpen())">
+      {{ assistantOpen() ? 'Hide assistant' : 'Show assistant' }}
+    </button>
+  </header>
+
+  <main class="content">
+    <router-outlet />
+  </main>
+
+  @if (assistantOpen()) {
+    <aside class="sidecar">
+      <app-assistant-panel />
+    </aside>
+  }
+</div>
